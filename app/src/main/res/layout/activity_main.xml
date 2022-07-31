@@ -13,6 +13,7 @@
         android:visibility="gone"
         tools:visibility="gone"/>
 
+
     <TextView
         android:id="@+id/tv_no_records_available"
         android:layout_width="match_parent"

@@ -5,8 +5,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.activity_main.*
 import nb.com.happyplaces.R
+import nb.com.happyplaces.adapters.HappyPlacesAdapter
 import nb.com.happyplaces.database.DatabaseHandler
 import nb.com.happyplaces.models.HappyPlaceModel
 
@@ -33,6 +36,13 @@ class MainActivity : AppCompatActivity() {
         }
         getHappyPlacesListFromLocalDB()
     }
+    private fun setupHappyPlaceRecyclerView(happyPlaceList:ArrayList<HappyPlaceModel>){
+        rv_happy_places_list.layoutManager = LinearLayoutManager(this)
+        rv_happy_places_list.setHasFixedSize(true)
+        val placesAdapter = HappyPlacesAdapter(this, happyPlaceList)
+        rv_happy_places_list.adapter = placesAdapter
+    }
+
     private fun getHappyPlacesListFromLocalDB(){
         val dbHandler = DatabaseHandler(this)
         val getHappyPlaceList: ArrayList<HappyPlaceModel> = dbHandler.getHappyPlacesList()
